@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sample Web Page</title>
+  <meta name="description" content="A clean single-file sample webpage with responsive layout and small interactions." />
+  <style>
+    :root{
+      --bg:#f6f7fb; --card:#fff; --accent:#6c63ff; --muted:#6b7280; --glass: rgba(255,255,255,0.6);
+    }
+    [data-theme='dark']{ --bg:#0b1020; --card:#0f1724; --accent:#7c5cff; --muted:#94a3b8; --glass: rgba(255,255,255,0.04); color:#e6eef8 }
+    *{box-sizing:border-box}
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial; margin:0; background:linear-gradient(180deg,var(--bg),#fff); color:#0f1724; -webkit-font-smoothing:antialiased}
+    header{display:flex;align-items:center;justify-content:space-between;padding:20px 28px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#4cc9f0);display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+    nav{display:flex;gap:14px}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600}
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:40px 28px}
+    .hero h1{font-size:clamp(28px,4vw,44px);margin:0 0 12px}
+    .hero p{color:var(--muted);margin:0 0 18px}
+    .cta{display:flex;gap:12px}
+    .btn{padding:10px 16px;border-radius:10px;border:0;font-weight:700;cursor:pointer}
+    .btn-primary{background:var(--accent);color:white}
+    .card{background:var(--card);border-radius:14px;padding:18px;box-shadow:0 6px 20px rgba(11,15,30,0.06)}
+    .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;padding:28px}
+    footer{padding:28px;text-align:center;color:var(--muted)}
+
+    /* responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;}
+      nav{display:none}
+    }
+    /* small form style */
+    form{display:flex;flex-direction:column;gap:10px}
+    input,textarea{padding:10px;border:1px solid #e6e9f2;border-radius:8px}
+    .muted{color:var(--muted)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">SW</div>
+      <div>
+        <div style="font-weight:800">SampleWeb</div>
+        <div class="muted" style="font-size:12px">A simple single-file template</div>
+      </div>
+    </div>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#example">Example</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div style="display:flex;gap:8px;align-items:center">
+      <button id="themeToggle" class="btn">Dark</button>
+      <a class="btn btn-primary" href="#contact">Get in touch</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <h1>Beautiful, simple web page — single file</h1>
+        <p>Starter template with responsive layout, a small component library, and lightweight JS. Copy and paste into <code>index.html</code> and open in your browser.</p>
+        <div class="cta">
+          <button class="btn btn-primary" onclick="alert('Primary clicked — replace with your action')">Primary action</button>
+          <button class="btn" onclick="document.querySelector('#contact input').focus()">Contact</button>
+        </div>
+
+        <div class="card" style="margin-top:18px;">
+          <strong>Quick preview</strong>
+          <p class="muted" style="margin:8px 0 0;">This card demonstrates the visual style and spacing. Use it to show content or controls.</p>
+        </div>
+      </div>
+
+      <aside class="card">
+        <h3 style="margin:0 0 8px">Live example</h3>
+        <p class="muted" style="margin:0 0 12px">Try the buttons above and toggle dark mode.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <div style="flex:1;min-width:120px">
+            <label class="muted">Name</label>
+            <input placeholder="Your name" />
+          </div>
+          <div style="flex:1;min-width:120px">
+            <label class="muted">Email</label>
+            <input placeholder="you@example.com" />
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="features">
+      <div style="padding:0 28px">
+        <h2 style="margin-bottom:6px">Features</h2>
+        <p class="muted" style="margin-top:0">Small building blocks you can reuse.</p>
+      </div>
+      <div class="features" style="padding-top:6px;padding-bottom:18px">
+        <div class="card"><strong>Responsive</strong><p class="muted">Layouts that adapt from mobile to desktop.</p></div>
+        <div class="card"><strong>Accessible</strong><p class="muted">Semantic HTML and focusable controls.</p></div>
+        <div class="card"><strong>Copy-paste</strong><p class="muted">A single file to start your prototype quickly.</p></div>
+        <div class="card"><strong>Lightweight JS</strong><p class="muted">No build step required — plain JS.</p></div>
+      </div>
+    </section>
+
+    <section id="example" style="padding:0 28px">
+      <h2>Example code area</h2>
+      <div class="card" style="margin-top:12px">
+        <pre style="white-space:pre-wrap;margin:0;font-size:13px;color:var(--muted)">HTML + CSS + JS — all in one file. Edit and save to see changes.</pre>
+      </div>
+    </section>
+
+    <section id="contact" style="padding:20px 28px">
+      <h2>Contact</h2>
+      <div class="card" style="max-width:760px">
+        <form onsubmit="event.preventDefault(); submitForm();">
+          <input id="name" placeholder="Full name" required />
+          <input id="email" placeholder="Email" type="email" required />
+          <textarea id="message" rows="4" placeholder="Message" required></textarea>
+          <div style="display:flex;gap:10px;align-items:center;justify-content:space-between">
+            <div class="muted">We'll never share your info.</div>
+            <div>
+              <button type="submit" class="btn btn-primary">Send</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="muted">Made with care • Single-file template</div>
+  </footer>
+
+  <script>
+    // small interactions: theme toggle and form submit
+    const themeToggle = document.getElementById('themeToggle');
+    function setTheme(theme){
+      document.documentElement.setAttribute('data-theme', theme);
+      themeToggle.textContent = theme === 'dark' ? 'Light' : 'Dark';
+    }
+    // initialize based on prefers-color-scheme
+    const prefers = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setTheme(prefers ? 'dark' : 'light');
+
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      setTheme(current === 'dark' ? 'light' : 'dark');
+    });
+
+    function submitForm(){
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if(!name || !email || !message) return alert('Please fill all fields');
+      // fake submit — replace with fetch() to your backend
+      alert('Thanks, ' + name + '! Your message was sent.');
+      document.querySelector('#contact form').reset();
+    }
+  </script>
+</body>
+</html>
